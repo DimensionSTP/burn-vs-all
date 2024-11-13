@@ -14,7 +14,7 @@ import albumentations as A
 from albumentations.pytorch import ToTensorV2
 
 
-class UpStageDocsDataset(Dataset):
+class BurnSkinDataset(Dataset):
     def __init__(
         self,
         data_path: str,
