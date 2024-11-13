@@ -214,9 +214,37 @@ class BurnSkinDataset(Dataset):
                             p=self.augmentation_probability,
                         )
                     )
+            transforms.append(
+                A.Normalize(
+                    mean=[
+                        0.485,
+                        0.456,
+                        0.406,
+                    ],
+                    std=[
+                        0.229,
+                        0.224,
+                        0.225,
+                    ],
+                )
+            )
             transforms.append(ToTensorV2())
             return A.Compose(transforms)
         else:
+            transforms.append(
+                A.Normalize(
+                    mean=[
+                        0.485,
+                        0.456,
+                        0.406,
+                    ],
+                    std=[
+                        0.229,
+                        0.224,
+                        0.225,
+                    ],
+                )
+            )
             transforms.append(ToTensorV2())
             return A.Compose(transforms)
 
