@@ -49,9 +49,13 @@ class BurnSkinDataset(Dataset):
         self.image_size = image_size
         self.augmentation_probability = augmentation_probability
         self.augmentations = augmentations
-        dataset = self.get_dataset()
-        self.image_paths = dataset["image_paths"]
-        self.labels = dataset["labels"]
+        metadata = self.get_metadata()
+        self.image_paths = metadata["image_paths"]
+        self.labels = metadata["labels"]
+        self.x1 = metadata["x1"]
+        self.y1 = metadata["y1"]
+        self.x2 = metadata["x2"]
+        self.y2 = metadata["y2"]
         self.transform = self.get_transform()
 
     def __len__(self) -> int:
@@ -71,9 +75,9 @@ class BurnSkinDataset(Dataset):
             "index": idx,
         }
 
-    def get_dataset(self) -> Dict[str, List[Any]]:
+    def get_metadata(self) -> Dict[str, List[Any]]:
         if self.split in ["train", "val"]:
-            csv_path = f"{self.data_path}/train.csv"
+            csv_path = f"{self.metadata_path}/train.csv"
             data = pd.read_csv(csv_path)
             train_data, val_data = train_test_split(
                 data,
@@ -115,20 +119,33 @@ class BurnSkinDataset(Dataset):
 
         if self.split in ["train", "test"]:
             image_paths = [
-                f"{self.data_path}/{self.split}/{file_name}" for file_name in data["ID"]
+                f"{self.data_path}/{file_name}"
+                for file_name in data[self.image_path_column_name]
             ]
         elif self.split == "val":
             image_paths = [
-                f"{self.data_path}/train/{file_name}" for file_name in data["ID"]
+                f"{self.data_path}/{file_name}"
+                for file_name in data[self.image_path_column_name]
             ]
         else:
             image_paths = [
-                f"{self.data_path}/test/{file_name}" for file_name in data["ID"]
+                f"{self.data_path}/{file_name}"
+                for file_name in data[self.image_path_column_name]
             ]
         labels = data[self.target_column_name].tolist()
+        if self.classification_type in [0, 1, 2, 3]:
+            labels = [1 if label == self.classification_type else 0 for label in labels]
+        x1 = data[self.coordinates_column_name.x1].tolist()
+        y1 = data[self.coordinates_column_name.y1].tolist()
+        x2 = data[self.coordinates_column_name.x2].tolist()
+        y2 = data[self.coordinates_column_name.y2].tolist()
         return {
             "image_paths": image_paths,
             "labels": labels,
+            "x1": x1,
+            "y1": y1,
+            "x2": x2,
+            "y2": y2,
         }
 
     def get_transform(self) -> A.Compose:
