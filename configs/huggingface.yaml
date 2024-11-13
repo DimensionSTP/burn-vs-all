@@ -61,8 +61,8 @@ gradient_clip_val: 1
 gradient_clip_algorithm: norm
 epoch: 20
 
-model_name: HuggingFace_${modality}
-dataset_name: UpStageDocImages
+model_name: HuggingFace_${model_type}
+dataset_name: BurnSkinImages
 mode: train
 
 is_tuned: untuned
