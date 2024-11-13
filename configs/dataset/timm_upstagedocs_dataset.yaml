@@ -1,0 +1,18 @@
+_target_: src.datasets.timm_dataset.UpStageDocsDataset
+data_path: ${connected_dir}/data
+split: ${split.train}
+split_ratio: ${split_ratio}
+seed: ${seed}
+target_column_name: ${target_column_name}
+num_devices: ${devices}
+batch_size: ${batch_size}
+image_size: ${image_size}
+augmentation_probability: 0.2
+augmentations:
+  - rotate30
+  - rotate45
+  - rotate90
+  - hflip
+  - vflip
+  - noise
+  - blur

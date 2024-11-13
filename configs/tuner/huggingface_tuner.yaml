@@ -1,0 +1,55 @@
+_target_: src.tuners.huggingface_tuner.HuggingFaceTuner
+hparams:
+  pretrained_model_name:
+    - klue/roberta-large
+    - klue/roberta-base
+    - klue/roberta-small
+    - klue/bert-base
+    - microsoft/beit-base-patch16-224-pt22k-ft22k
+    - microsoft/beit-large-patch16-224-pt22k-ft22k
+    - microsoft/dit-base-finetuned-rvlcdip
+    - microsoft/dit-large-finetuned-rvlcdip
+    - nielsr/layoutlmv3-finetuned-cord
+    - nielsr/layoutlmv3-finetuned-funsd
+    - felixtran/layoutlmv3-rvl-cdip-small 
+  lr:
+    low: 5e-5
+    high: 5e-4
+    log: False
+  weight_decay:
+    low: 1e-2
+    high: 1e-1
+    log: False
+  half_period:
+    low: 5e-1
+    high: 2e-0
+    log: False
+  eta_min_ratio:
+    low: 5e-3
+    high: 5e-2
+    log: False
+
+module_params:
+  modality: ${modality}
+  num_labels: ${num_labels}
+  is_backbone: ${is_backbone}
+  average: macro
+  interval: step
+  devices: ${devices}
+  accelerator: ${accelerator}
+  strategy: ${strategy}
+  log_every_n_steps: ${log_every_n_steps}
+  precision: ${precision}
+  accumulate_grad_batches: ${accumulate_grad_batches}
+  gradient_clip_val: ${gradient_clip_val}
+  gradient_clip_algorithm: ${gradient_clip_algorithm}
+  max_epochs: ${epoch}
+  monitor: ${monitor}
+  mode: ${tracking_direction}
+  patience: ${patience}
+  min_delta: ${min_delta}
+
+direction: maximize
+seed: ${seed}
+num_trials: ${num_trials}
+hparams_save_path: ${hparams_save_path}

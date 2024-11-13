@@ -1,0 +1,52 @@
+_target_: src.tuners.timm_tuner.TimmTuner
+hparams:
+  model_type:
+    - efficientnet_b0.ra_in1k
+    - efficientnet_b1.ft_in1k
+    - efficientnet_b2.ra_in1k
+    - efficientnet_b3.ra2_in1k
+    - efficientnet_b4.ra2_in1k
+    - efficientnet_b5.sw_in12k
+    - efficientnet_b5.sw_in12k_ft_in1k
+  pretrained:
+    - pretrained
+    - raw
+  lr:
+    low: 5e-5
+    high: 5e-4
+    log: False
+  weight_decay:
+    low: 1e-2
+    high: 1e-1
+    log: False
+  half_period:
+    low: 5e-1
+    high: 2e-0
+    log: False
+  eta_min_ratio:
+    low: 5e-3
+    high: 5e-2
+    log: False
+
+module_params:
+  num_labels: ${num_labels}
+  average: macro
+  interval: step
+  devices: ${devices}
+  accelerator: ${accelerator}
+  strategy: ${strategy}
+  log_every_n_steps: ${log_every_n_steps}
+  precision: ${precision}
+  accumulate_grad_batches: ${accumulate_grad_batches}
+  gradient_clip_val: ${gradient_clip_val}
+  gradient_clip_algorithm: ${gradient_clip_algorithm}
+  max_epochs: ${epoch}
+  monitor: ${monitor}
+  mode: ${tracking_direction}
+  patience: ${patience}
+  min_delta: ${min_delta}
+
+direction: maximize
+seed: ${seed}
+num_trials: ${num_trials}
+hparams_save_path: ${hparams_save_path}

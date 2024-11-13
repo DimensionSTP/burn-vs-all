@@ -1,0 +1,90 @@
+_target_: src.tuners.multimodal_tuner.MultiModalTuner
+hparams:
+  num_heads:
+    - 4
+    - 8
+  num_layers:
+    - 2
+    - 3
+    - 4
+  attn_dropout:
+    low: 0.1
+    high: 0.5
+    log: False
+  relu_dropout:
+    low: 0.1
+    high: 0.5
+    log: False
+  res_dropout:
+    low: 0.1
+    high: 0.5
+    log: False
+  emb_dropout:
+    low: 0.1
+    high: 0.5
+    log: False
+  out_dropout:
+    low: 0.1
+    high: 0.5
+    log: False
+  attn_mask:
+    - False
+  scale_embedding:
+    - True
+    - False
+  multimodal_weight:
+    low: 0.1
+    high: 0.9
+    log: False
+  modality_split_weight:
+    low: 0.1
+    high: 0.9
+    log: False
+  dynamic_loss_weight:
+    low: 0.1
+    high: 0.9
+    log: False
+  lr:
+    low: 5e-4
+    high: 5e-3
+    log: False
+  weight_decay:
+    low: 1e-2
+    high: 1e-1
+    log: False
+  warmup_ratio:
+    low: 1e-2
+    high: 1e-1
+    log: False
+  eta_min_ratio:
+    low: 5e-3
+    high: 5e-2
+    log: False
+
+module_params:
+  image_backbone: ${image_pretrained_model_name}
+  text_backbone: ${text_pretrained_model_name}
+  is_backbone: ${is_backbone}
+  model_dims: 1024
+  text_max_length: ${text_max_length}
+  num_labels: ${num_labels}
+  average: macro
+  interval: step
+  devices: ${devices}
+  accelerator: ${accelerator}
+  strategy: ${strategy}
+  log_every_n_steps: ${log_every_n_steps}
+  precision: ${precision}
+  accumulate_grad_batches: ${accumulate_grad_batches}
+  gradient_clip_val: ${gradient_clip_val}
+  gradient_clip_algorithm: ${gradient_clip_algorithm}
+  max_epochs: ${epoch}
+  monitor: ${monitor}
+  mode: ${tracking_direction}
+  patience: ${patience}
+  min_delta: ${min_delta}
+
+direction: maximize
+seed: ${seed}
+num_trials: ${num_trials}
+hparams_save_path: ${hparams_save_path}

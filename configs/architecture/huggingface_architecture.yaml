@@ -1,0 +1,17 @@
+_target_: src.architectures.huggingface_architecture.HuggingFaceArchitecture
+
+model:
+  _target_: src.architectures.models.huggingface_model.HuggingFaceModel
+  modality: ${modality}
+  pretrained_model_name: ${pretrained_model_name}
+  num_labels: ${num_labels}
+  is_backbone: ${is_backbone}
+
+num_labels: ${num_labels}
+average: macro
+strategy: ${strategy}
+lr: ${lr}
+weight_decay: ${weight_decay}
+half_period: ${half_period}
+eta_min_ratio: ${eta_min_ratio}
+interval: step

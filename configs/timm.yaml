@@ -1,0 +1,81 @@
+# @package _global_
+defaults:
+  - dataset: timm_upstagedocs_dataset
+  - architecture: timm_architecture
+  - tuner: timm_tuner
+  - logger: wandb
+  - hydra: hydra
+  - callbacks: callbacks
+  - trainer: trainer
+
+package_name: upstage-cv
+project_dir: ${oc.env:PROJECT_DIR}/${package_name}
+connected_dir: ${oc.env:CONNECTED_DIR}/${package_name}
+
+seed: 2024
+
+num_labels: 17
+
+split:
+  train: train
+  val: val
+  test: test
+  predict: predict
+
+batch_size: 64
+workers_ratio: 8
+use_all_workers: False
+
+split_ratio: 0.1
+target_column_name: target
+image_size: 256
+
+model_type: resnet50
+pretrained: pretrained
+
+lr: 1e-4
+weight_decay: 1e-2
+half_period: 1e-0
+eta_min_ratio: 1e-2
+
+monitor: val_MulticlassF1Score
+tracking_direction: max
+patience: 2
+min_delta: 0
+
+devices: ${oc.decode:${oc.env:DEVICES}}
+accelerator: gpu
+strategy: ddp
+log_every_n_steps: 10
+precision: 32
+accumulate_grad_batches: 1
+gradient_clip_val: 1
+gradient_clip_algorithm: norm
+epoch: 20
+
+model_name: Timm
+dataset_name: UpStageDocImages
+mode: train
+
+is_tuned: untuned
+num_trials: 3
+hparams_save_path: ${connected_dir}/hparams/${model_name}/${dataset_name}/${num_trials}_trials
+tuned_hparams_path: ${hparams_save_path}/best_params.json
+
+project_name: ${model_name}-${dataset_name}-${mode}
+total_batch_size: bs=${batch_size}x${devices}x${accumulate_grad_batches}
+save_detail: ${model_type}-${pretrained}-precision=${precision}-${total_batch_size}
+resumed_step: 0
+ckpt_path: ${callbacks.model_checkpoint.dirpath}/epoch=${epoch}.ckpt
+
+submission_file_name: test
+logit_name: ${save_detail}-epoch=${epoch}
+submission_name: ${save_detail}-epoch=${epoch}
+
+user_name: ${oc.env:USER_NAME}
+model_detail: resnet50
+upload_tag: document-images
+num_safetensors: 2
+
+run_name: ${project_name}
+work_dir: ${hydra:runtime.cwd}

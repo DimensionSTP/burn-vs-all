@@ -1,0 +1,16 @@
+_target_: src.architectures.timm_architecture.TimmArchitecture
+
+model:
+  _target_: src.architectures.models.timm_model.TimmModel
+  model_type: ${model_type}
+  pretrained: ${pretrained}
+  num_labels: ${num_labels}
+
+num_labels: ${num_labels}
+average: macro
+strategy: ${strategy}
+lr: ${lr}
+weight_decay: ${weight_decay}
+half_period: ${half_period}
+eta_min_ratio: ${eta_min_ratio}
+interval: step
