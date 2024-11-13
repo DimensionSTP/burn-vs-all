@@ -66,7 +66,26 @@ class BurnSkinDataset(Dataset):
         idx: int,
     ) -> Dict[str, Any]:
         image_path = self.image_paths[idx]
-        image = np.array(Image.open(image_path).convert("RGB")) / 255.0
+        image = cv2.imread(image_path)
+        image = cv2.cvtColor(
+            image,
+            cv2.COLOR_BGR2RGB,
+        )
+        if self.is_crop:
+            x1, y1, x2, y2 = self.x1[idx], self.y1[idx], self.x2[idx], self.y2[idx]
+            image = image[y1:y2, x1:x2]
+        image = cv2.resize(
+            image,
+            (
+                self.image_size,
+                self.image_size,
+            ),
+            interpolation=cv2.INTER_CUBIC,
+        )[
+            0 : self.image_size,
+            0 : self.image_size,
+            :,
+        ]
         image = self.transform(image=image)["image"]
         label = self.labels[idx]
         return {
