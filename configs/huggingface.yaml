@@ -27,14 +27,19 @@ workers_ratio: 8
 use_all_workers: False
 
 split_ratio: 0.1
-target_column_name: target
-upload_user: klue
-model_type: roberta-large
+classification_type: 0
+is_crop: True
+image_path_column_name: file_name 
+target_column_name: label
+coordinates_column_name:
+  x1: x1
+  y1: y1
+  x2: x2
+  y2: y2
+upload_user: microsoft
+model_type: swin-large-patch4-window7-224-in22k
 pretrained_model_name: ${upload_user}/${model_type}
-text_max_length: 512
-
-modality: text
-is_backbone: False
+image_size: 224
 
 lr: 1e-4
 weight_decay: 1e-2
