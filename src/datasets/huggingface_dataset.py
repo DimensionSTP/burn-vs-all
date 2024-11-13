@@ -18,46 +18,42 @@ class BurnSkinDataset(Dataset):
     def __init__(
         self,
         data_path: str,
+        metadata_path: str,
         split: str,
         split_ratio: float,
         seed: int,
+        classification_type: int,
+        is_crop: bool,
+        image_path_column_name: str,
         target_column_name: str,
+        coordinates_column_name: Dict[str, str],
         num_devices: int,
         batch_size: int,
-        modality: str,
+        image_size: int,
         pretrained_model_name: str,
         augmentation_probability: float,
         augmentations: List[str],
-        text_max_length: int,
     ) -> None:
         self.data_path = data_path
+        self.metadata_path = metadata_path
         self.split = split
         self.split_ratio = split_ratio
         self.seed = seed
+        self.classification_type = classification_type
+        if self.classification_type not in range(5):
+            raise ValueError(
+                f"Invalid data type: {self.classification_type}. Choose in [0, 1, 2, 3, 4]."
+            )
+        self.is_crop = is_crop
+        self.image_path_column_name = image_path_column_name
         self.target_column_name = target_column_name
+        self.coordinates_column_name = coordinates_column_name
         self.num_devices = num_devices
         self.batch_size = batch_size
-        self.modality = modality
-        if self.modality == "image":
-            self.data_encoder = AutoImageProcessor.from_pretrained(
-                pretrained_model_name,
-            )
-        elif self.modality == "text":
-            self.data_encoder = AutoTokenizer.from_pretrained(
-                pretrained_model_name,
-                use_fast=True,
-            )
-        elif self.modality == "multi-modality":
-            self.data_encoder = AutoProcessor.from_pretrained(
-                pretrained_model_name,
-                apply_ocr=True,
-                ocr_lang="kor",
-            )
-        else:
-            raise ValueError(f"Invalid modality: {self.modality}")
-        dataset = self.get_dataset()
-        self.datas = dataset["datas"]
-        self.labels = dataset["labels"]
+        self.image_size = image_size
+        self.data_encoder = AutoFeatureExtractor.from_pretrained(
+            pretrained_model_name,
+        )
         self.augmentation_probability = augmentation_probability
         self.augmentations = augmentations
         self.transform = self.get_transform()
