@@ -1,16 +1,16 @@
-# Basic DL pipeline for CV competition
+# Basic DL pipeline for CV classification
 
-## For Upstage CV competition
+## For burn skin image classification
 
 ### Dataset
-Upstage CV competition dataset(document image classification)
+Burn skin image datasets
 
 ### Quick setup
 
 ```bash
 # clone project
-git clone https://github.com/DimensionSTP/upstage-cv.git
-cd upstage-cv
+git clone https://github.com/DimensionSTP/burn-vs-all.git
+cd burn-vs-all
 
 # [OPTIONAL] create conda environment
 conda create -n myenv python=3.10 -y
