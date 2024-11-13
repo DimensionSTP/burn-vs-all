@@ -57,7 +57,6 @@ class BurnSkinDataset(Dataset):
         self.augmentation_probability = augmentation_probability
         self.augmentations = augmentations
         self.transform = self.get_transform()
-        self.text_max_length = text_max_length
 
     def __len__(self) -> int:
         return len(self.labels)
