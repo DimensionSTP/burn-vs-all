@@ -76,35 +76,10 @@ class HuggingFaceTuner:
         params = dict()
         params["seed"] = self.seed
         if self.hparams.pretrained_model_name:
-            if self.module_params.modality == "image":
-                params["pretrained_model_name"] = trial.suggest_categorical(
-                    name="pretrained_model_name",
-                    choices=[
-                        name
-                        for name in self.hparams.pretrained_model_name
-                        if "it" in name
-                    ],
-                )
-            elif self.module_params.modality == "text":
-                params["pretrained_model_name"] = trial.suggest_categorical(
-                    name="pretrained_model_name",
-                    choices=[
-                        name
-                        for name in self.hparams.pretrained_model_name
-                        if "bert" in name
-                    ],
-                )
-            elif self.module_params.modality == "multi-modality":
-                params["pretrained_model_name"] = trial.suggest_categorical(
-                    name="pretrained_model_name",
-                    choices=[
-                        name
-                        for name in self.hparams.pretrained_model_name
-                        if "layout" in name
-                    ],
-                )
-            else:
-                raise ValueError(f"Invalid modality: {self.hparams.modality}")
+            params["pretrained_model_name"] = trial.suggest_categorical(
+                name="pretrained_model_name",
+                choices=self.hparams.pretrained_model_name,
+            )
         if self.hparams.lr:
             params["lr"] = trial.suggest_float(
                 name="lr",
