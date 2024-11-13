@@ -81,9 +81,9 @@ logit_name: ${save_detail}-epoch=${epoch}
 submission_name: ${save_detail}-epoch=${epoch}
 
 user_name: ${oc.env:USER_NAME}
-model_detail: roberta-large
-upload_tag: document-images
-num_safetensors: 2
+model_detail: ${model_type}
+upload_tag: burn-skin-images
+num_safetensors: 1
 
 run_name: ${project_name}
 work_dir: ${hydra:runtime.cwd}
