@@ -8,7 +8,7 @@ defaults:
   - callbacks: callbacks
   - trainer: trainer
 
-package_name: upstage-cv
+package_name: burn-vs-all
 project_dir: ${oc.env:PROJECT_DIR}/${package_name}
 connected_dir: ${oc.env:CONNECTED_DIR}/${package_name}
 
