@@ -1,9 +1,14 @@
-_target_: src.datasets.timm_dataset.UpStageDocsDataset
+_target_: src.datasets.timm_dataset.BurnSkinDataset
 data_path: ${connected_dir}/data
+metadata_path: ${connected_dir}/metadata
 split: ${split.train}
 split_ratio: ${split_ratio}
 seed: ${seed}
+classification_type: ${classification_type}
+is_crop: ${is_crop}
+image_path_column_name: ${image_path_column_name}
 target_column_name: ${target_column_name}
+coordinates_column_name: ${coordinates_column_name}
 num_devices: ${devices}
 batch_size: ${batch_size}
 image_size: ${image_size}
