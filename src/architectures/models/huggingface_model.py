@@ -3,37 +3,23 @@ from typing import Dict
 import torch
 from torch import nn
 
-from transformers import (
-    AutoModelForSequenceClassification,
-    AutoModelForImageClassification,
-)
+from transformers import AutoModelForImageClassification
 
 
 class HuggingFaceModel(nn.Module):
     def __init__(
         self,
-        modality: str,
         pretrained_model_name: str,
         num_labels: int,
-        is_backbone: bool,
+        classification_type: int,
     ) -> None:
         super().__init__()
-        if modality in ["text", "multi-modality"]:
-            self.model = AutoModelForSequenceClassification.from_pretrained(
-                pretrained_model_name,
-                num_labels=num_labels,
-                output_hidden_states=is_backbone,
-                ignore_mismatched_sizes=True,
-            )
-        elif modality == "image":
-            self.model = AutoModelForImageClassification.from_pretrained(
-                pretrained_model_name,
-                num_labels=num_labels,
-                output_hidden_states=is_backbone,
-                ignore_mismatched_sizes=True,
-            )
-        else:
-            raise ValueError(f"Invalid modality: {modality}")
+        self.model = AutoModelForImageClassification.from_pretrained(
+            pretrained_model_name,
+            num_classes=num_labels if classification_type not in range(4) else 2,
+            output_hidden_states=False,
+            ignore_mismatched_sizes=True,
+        )
 
     def forward(
         self,
