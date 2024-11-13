@@ -15,10 +15,15 @@ class BurnSkinDataset(Dataset):
     def __init__(
         self,
         data_path: str,
+        metadata_path: str,
         split: str,
         split_ratio: float,
         seed: int,
+        classification_type: int,
+        is_crop: bool,
+        image_path_column_name: str,
         target_column_name: str,
+        coordinates_column_name: Dict[str, str],
         num_devices: int,
         batch_size: int,
         image_size: int,
@@ -26,10 +31,19 @@ class BurnSkinDataset(Dataset):
         augmentations: List[str],
     ) -> None:
         self.data_path = data_path
+        self.metadata_path = metadata_path
         self.split = split
         self.split_ratio = split_ratio
         self.seed = seed
+        self.classification_type = classification_type
+        if self.classification_type not in range(5):
+            raise ValueError(
+                f"Invalid data type: {self.classification_type}. Choose in [0, 1, 2, 3, 4]."
+            )
+        self.is_crop = is_crop
+        self.image_path_column_name = image_path_column_name
         self.target_column_name = target_column_name
+        self.coordinates_column_name = coordinates_column_name
         self.num_devices = num_devices
         self.batch_size = batch_size
         self.image_size = image_size
