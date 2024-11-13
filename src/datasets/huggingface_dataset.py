@@ -1,15 +1,14 @@
 from typing import Dict, Any, List
-import re
 
 import numpy as np
 import pandas as pd
-from PIL import Image
+import cv2
 from sklearn.model_selection import train_test_split
 
 import torch
 from torch.utils.data import Dataset
 
-from transformers import AutoImageProcessor, AutoTokenizer, AutoProcessor
+from transformers import AutoFeatureExtractor
 
 import albumentations as A
 from albumentations.pytorch import ToTensorV2
