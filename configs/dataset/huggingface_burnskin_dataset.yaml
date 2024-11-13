@@ -1,4 +1,4 @@
-_target_: src.datasets.huggingface_dataset.UpStageDocsDataset
+_target_: src.datasets.huggingface_dataset.BurnSkinDataset
 data_path: ${connected_dir}/data
 split: ${split.train}
 split_ratio: ${split_ratio}
