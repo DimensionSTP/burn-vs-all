@@ -118,6 +118,7 @@ class TimmTuner:
             model_type=params["model_type"],
             pretrained=params["pretrained"],
             num_labels=self.module_params.num_labels,
+            classification_type=self.module_params.classification_type,
         )
         architecture = TimmArchitecture(
             model=model,
