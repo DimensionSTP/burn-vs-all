@@ -1,13 +1,8 @@
 _target_: src.tuners.timm_tuner.TimmTuner
 hparams:
   model_type:
-    - efficientnet_b0.ra_in1k
-    - efficientnet_b1.ft_in1k
-    - efficientnet_b2.ra_in1k
-    - efficientnet_b3.ra2_in1k
-    - efficientnet_b4.ra2_in1k
-    - efficientnet_b5.sw_in12k
-    - efficientnet_b5.sw_in12k_ft_in1k
+    - swin_large_patch4_window7_224.ms_in22k
+    - convnext_large.fb_in22k
   pretrained:
     - pretrained
     - raw
@@ -30,6 +25,7 @@ hparams:
 
 module_params:
   num_labels: ${num_labels}
+  classification_type: ${classification_type}
   average: macro
   interval: step
   devices: ${devices}
