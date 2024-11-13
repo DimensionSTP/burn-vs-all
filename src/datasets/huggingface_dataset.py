@@ -258,34 +258,3 @@ class BurnSkinDataset(Dataset):
         )
         encoded = {k: v.squeeze(0) for k, v in encoded.items()}
         return encoded
-
-    @staticmethod
-    def normalize_string(
-        data: str,
-    ) -> str:
-        data = re.sub(
-            r"[\s]",
-            r" ",
-            str(data),
-        )
-        data = re.sub(
-            r"[^a-zA-Z가-힣ㄱ-ㅎ0-9.!?]+",
-            r" ",
-            str(data),
-        )
-        return data
-
-    def encode_text(
-        self,
-        data: str,
-    ) -> Dict[str, torch.Tensor]:
-        encoded = self.data_encoder(
-            data,
-            padding="max_length",
-            max_length=self.text_max_length,
-            truncation=True,
-            return_tensors="pt",
-            add_special_tokens=True,
-        )
-        encoded = {k: v.squeeze(0) for k, v in encoded.items()}
-        return encoded
