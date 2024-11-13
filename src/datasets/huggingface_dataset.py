@@ -81,18 +81,6 @@ class BurnSkinDataset(Dataset):
         if self.is_crop:
             x1, y1, x2, y2 = self.x1[idx], self.y1[idx], self.x2[idx], self.y2[idx]
             image = image[y1:y2, x1:x2]
-        image = cv2.resize(
-            image,
-            (
-                self.image_size,
-                self.image_size,
-            ),
-            interpolation=cv2.INTER_CUBIC,
-        )[
-            0 : self.image_size,
-            0 : self.image_size,
-            :,
-        ]
         image = self.transform(image=image)["image"]
         encoded = self.encode_image(image)
         encoded["labels"] = torch.tensor(
@@ -227,37 +215,9 @@ class BurnSkinDataset(Dataset):
                             p=self.augmentation_probability,
                         )
                     )
-            transforms.append(
-                A.Normalize(
-                    mean=[
-                        0.485,
-                        0.456,
-                        0.406,
-                    ],
-                    std=[
-                        0.229,
-                        0.224,
-                        0.225,
-                    ],
-                )
-            )
             transforms.append(ToTensorV2())
             return A.Compose(transforms)
         else:
-            transforms.append(
-                A.Normalize(
-                    mean=[
-                        0.485,
-                        0.456,
-                        0.406,
-                    ],
-                    std=[
-                        0.229,
-                        0.224,
-                        0.225,
-                    ],
-                )
-            )
             transforms.append(ToTensorV2())
             return A.Compose(transforms)
 
