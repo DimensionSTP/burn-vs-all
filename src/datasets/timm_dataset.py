@@ -149,7 +149,7 @@ class BurnSkinDataset(Dataset):
         }
 
     def get_transform(self) -> A.Compose:
-        transforms = [A.Resize(self.image_size, self.image_size)]
+        transforms = []
         if self.split in ["train", "val"]:
             for aug in self.augmentations:
                 if aug == "rotate30":
