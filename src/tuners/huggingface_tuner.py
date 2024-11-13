@@ -135,10 +135,9 @@ class HuggingFaceTuner:
             )
 
         model = HuggingFaceModel(
-            modality=self.module_params.modality,
             pretrained_model_name=params["pretrained_model_name"],
             num_labels=self.module_params.num_labels,
-            is_backbone=self.module_params.is_backbone,
+            classification_type=self.module_params.classification_type,
         )
         architecture = HuggingFaceArchitecture(
             model=model,
