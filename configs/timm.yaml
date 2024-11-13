@@ -14,7 +14,7 @@ connected_dir: ${oc.env:CONNECTED_DIR}/${package_name}
 
 seed: 2024
 
-num_labels: 17
+num_labels: 4
 
 split:
   train: train
