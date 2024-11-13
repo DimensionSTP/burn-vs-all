@@ -5,6 +5,7 @@ model:
   model_type: ${model_type}
   pretrained: ${pretrained}
   num_labels: ${num_labels}
+  classification_type: ${classification_type}
 
 num_labels: ${num_labels}
 average: macro
