@@ -36,10 +36,10 @@ coordinates_column_name:
   y1: y1
   x2: x2
   y2: y2
+image_size: 224
 upload_user: microsoft
 model_type: swin-large-patch4-window7-224-in22k
 pretrained_model_name: ${upload_user}/${model_type}
-image_size: 224
 
 lr: 1e-4
 weight_decay: 1e-2
