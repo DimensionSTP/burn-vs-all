@@ -1,12 +1,17 @@
 _target_: src.datasets.huggingface_dataset.BurnSkinDataset
 data_path: ${connected_dir}/data
+metadata_path: ${connected_dir}/metadata
 split: ${split.train}
 split_ratio: ${split_ratio}
 seed: ${seed}
+classification_type: ${classification_type}
+is_crop: ${is_crop}
+image_path_column_name: ${image_path_column_name}
 target_column_name: ${target_column_name}
+coordinates_column_name: ${coordinates_column_name}
 num_devices: ${devices}
 batch_size: ${batch_size}
-modality: ${modality}
+image_size: ${image_size}
 pretrained_model_name: ${pretrained_model_name}
 augmentation_probability: 0.2
 augmentations:
@@ -17,4 +22,3 @@ augmentations:
   - vflip
   - noise
   - blur
-text_max_length: ${text_max_length}
