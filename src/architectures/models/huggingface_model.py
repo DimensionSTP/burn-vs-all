@@ -16,7 +16,7 @@ class HuggingFaceModel(nn.Module):
         super().__init__()
         self.model = AutoModelForImageClassification.from_pretrained(
             pretrained_model_name,
-            num_classes=num_labels if classification_type not in range(4) else 2,
+            num_labels=num_labels if classification_type not in range(4) else 2,
             output_hidden_states=False,
             ignore_mismatched_sizes=True,
         )
