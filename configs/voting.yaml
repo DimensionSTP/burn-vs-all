@@ -4,7 +4,7 @@ defaults:
 run_name: soft_voting
 work_dir: ${hydra:runtime.cwd}
 
-package_name: upstage-cv
+package_name: burn-vs-all
 connected_dir: ${oc.env:CONNECTED_DIR}/${package_name}
 voted_name: soft_voting
 
