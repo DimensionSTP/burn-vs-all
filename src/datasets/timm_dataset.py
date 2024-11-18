@@ -111,10 +111,10 @@ class BurnSkinDataset(Dataset):
             else:
                 data = val_data
         elif self.split == "test":
-            csv_path = f"{self.data_path}/{self.split}.csv"
+            csv_path = f"{self.metadata_path}/{self.split}.csv"
             data = pd.read_csv(csv_path)
         elif self.split == "predict":
-            csv_path = f"{self.data_path}/test.csv"
+            csv_path = f"{self.metadata_path}/test.csv"
             data = pd.read_csv(csv_path)
             if self.num_devices > 1:
                 last_row = data.iloc[-1]
