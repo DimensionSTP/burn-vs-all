@@ -29,6 +29,20 @@ HF_HOME={HF_HOME}
 USER_NAME={USER_NAME}
 ```
 
+### preprocess metadata
+
+* end-to-end
+```shell
+python src/preprocessing/preprocess_metadata.py
+```
+
+### split metadata
+
+* end-to-end
+```shell
+python src/preprocessing/split_metadata.py
+```
+
 ### Model Hyper-Parameters Tuning
 
 * end-to-end
@@ -59,14 +73,34 @@ python main.py mode=predict is_tuned={tuned or untuned} num_trials={num_trials} 
 
 ### Examples of shell scipts
 
+* preprocess metadata
+```shell
+bash scripts/preprocess_metadata.sh
+```
+
+* split metadata
+```shell
+bash scripts/split_metadata.sh
+```
+
 * train
 ```shell
 bash scripts/train.sh
 ```
 
+* test
+```shell
+bash scripts/test.sh
+```
+
 * predict
 ```shell
 bash scripts/predict.sh
+```
+
+* tune
+```shell
+bash scripts/tune.sh
 ```
 
 
