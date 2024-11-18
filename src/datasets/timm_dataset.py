@@ -141,7 +141,7 @@ class BurnSkinDataset(Dataset):
             lambda row: f"{self.data_path}/{row[self.image_dir_column_name]}/images/{row[self.image_file_column_name]}",
             axis=1,
         ).tolist()
-        labels = data[self.target_column_name].tolist()
+        labels = data[self.target_column_name].astype(int).tolist()
         if self.classification_type in [0, 1, 2, 3]:
             labels = [1 if label == self.classification_type else 0 for label in labels]
         x1 = data[self.coordinates_column_name.x1].tolist()
