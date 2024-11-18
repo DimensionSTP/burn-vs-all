@@ -29,7 +29,8 @@ use_all_workers: False
 split_ratio: 0.1
 classification_type: 0
 is_crop: True
-image_path_column_name: file_name 
+image_dir_column_name: data_path 
+image_file_column_name: file_name
 target_column_name: label
 coordinates_column_name:
   x1: x1
