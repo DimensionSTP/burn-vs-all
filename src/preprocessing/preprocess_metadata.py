@@ -97,6 +97,31 @@ def preprocess_metadata(
                 )
             )
 
+    exceptions_df = pd.DataFrame(
+        exceptions,
+        columns=[
+            config.image_dir_column_name,
+            config.image_file_column_name,
+        ],
+    )
+
+    filtered_metadata = metadata.merge(
+        exceptions_df,
+        on=[
+            config.image_dir_column_name,
+            config.image_file_column_name,
+        ],
+        how="left",
+        indicator=True,
+    )
+    filtered_metadata = filtered_metadata[filtered_metadata["_merge"] == "left_only"]
+    filtered_metadata = filtered_metadata.drop(columns=["_merge"])
+
+    filtered_metadata.to_csv(
+        f"{config.connected_dir}/metadata/metadata.csv",
+        index=False,
+    )
+
 
 if __name__ == "__main__":
     preprocess_metadata()
