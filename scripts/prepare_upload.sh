@@ -8,7 +8,7 @@ model_type="swin-large-patch4-window7-224-in22k"
 is_crop=True
 classification_type=4
 precision=32
-batch_size=32
+batch_size=16
 epoch=10
 model_detail="swin-large-patch4-window7-224-in22k"
 

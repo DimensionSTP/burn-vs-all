@@ -34,7 +34,7 @@ model_type="swin-large-patch4-window7-224-in22k"
 is_crop=True
 classification_types="0 1 2 3 4"
 precision=32
-batch_size=32
+batch_size=16
 workers_ratio=8
 use_all_workers=False
 
