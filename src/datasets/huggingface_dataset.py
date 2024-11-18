@@ -136,21 +136,10 @@ class BurnSkinDataset(Dataset):
         else:
             raise ValueError(f"Inavalid split: {self.split}")
 
-        if self.split in ["train", "test"]:
-            image_paths = [
-                f"{self.data_path}/{file_name}"
-                for file_name in data[self.image_path_column_name]
-            ]
-        elif self.split == "val":
-            image_paths = [
-                f"{self.data_path}/{file_name}"
-                for file_name in data[self.image_path_column_name]
-            ]
-        else:
-            image_paths = [
-                f"{self.data_path}/{file_name}"
-                for file_name in data[self.image_path_column_name]
-            ]
+        image_paths = data.apply(
+            lambda row: f"{self.data_path}/{row[self.image_dir_column_name]}/{row[self.image_file_column_name]}",
+            axis=1,
+        ).tolist()
         labels = data[self.target_column_name].tolist()
         if self.classification_type in [0, 1, 2, 3]:
             labels = [1 if label == self.classification_type else 0 for label in labels]
