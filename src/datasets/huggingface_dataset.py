@@ -143,10 +143,10 @@ class BurnSkinDataset(Dataset):
         labels = data[self.target_column_name].astype(int).tolist()
         if self.classification_type in [0, 1, 2, 3]:
             labels = [1 if label == self.classification_type else 0 for label in labels]
-        x1 = data[self.coordinates_column_name.x1].tolist()
-        y1 = data[self.coordinates_column_name.y1].tolist()
-        x2 = data[self.coordinates_column_name.x2].tolist()
-        y2 = data[self.coordinates_column_name.y2].tolist()
+        x1 = data[self.coordinates_column_name.x1].astype(int).tolist()
+        y1 = data[self.coordinates_column_name.y1].astype(int).tolist()
+        x2 = data[self.coordinates_column_name.x2].astype(int).tolist()
+        y2 = data[self.coordinates_column_name.y2].astype(int).tolist()
         return {
             "image_paths": image_paths,
             "labels": labels,
