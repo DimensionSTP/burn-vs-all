@@ -138,7 +138,7 @@ class BurnSkinDataset(Dataset):
             raise ValueError(f"Inavalid split: {self.split}")
 
         image_paths = data.apply(
-            lambda row: f"{self.data_path}/{row[self.image_dir_column_name]}/{row[self.image_file_column_name]}",
+            lambda row: f"{self.data_path}/{row[self.image_dir_column_name]}/images/{row[self.image_file_column_name]}",
             axis=1,
         ).tolist()
         labels = data[self.target_column_name].tolist()
