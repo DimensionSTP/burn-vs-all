@@ -24,7 +24,8 @@ class BurnSkinDataset(Dataset):
         seed: int,
         classification_type: int,
         is_crop: bool,
-        image_path_column_name: str,
+        image_dir_column_name: str,
+        image_file_column_name: str,
         target_column_name: str,
         coordinates_column_name: Dict[str, str],
         num_devices: int,
@@ -45,7 +46,8 @@ class BurnSkinDataset(Dataset):
                 f"Invalid data type: {self.classification_type}. Choose in [0, 1, 2, 3, 4]."
             )
         self.is_crop = is_crop
-        self.image_path_column_name = image_path_column_name
+        self.image_dir_column_name = image_dir_column_name
+        self.image_file_column_name = image_file_column_name
         self.target_column_name = target_column_name
         self.coordinates_column_name = coordinates_column_name
         self.num_devices = num_devices
