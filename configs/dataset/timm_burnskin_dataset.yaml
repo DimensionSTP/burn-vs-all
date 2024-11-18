@@ -6,7 +6,8 @@ split_ratio: ${split_ratio}
 seed: ${seed}
 classification_type: ${classification_type}
 is_crop: ${is_crop}
-image_path_column_name: ${image_path_column_name}
+image_dir_column_name: ${image_dir_column_name} 
+image_file_column_name: ${image_file_column_name}
 target_column_name: ${target_column_name}
 coordinates_column_name: ${coordinates_column_name}
 num_devices: ${devices}
