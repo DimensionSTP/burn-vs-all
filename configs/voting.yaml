@@ -14,5 +14,7 @@ target_column_name: label
 voted_file: ${connected_dir}/submissions/${voted_name}.csv
 
 votings:
-  logit1: 0.5
-  logit2: 0.5
+  logit1: 0.25
+  logit2: 0.25
+  logit3: 0.25
+  logit4: 0.25
