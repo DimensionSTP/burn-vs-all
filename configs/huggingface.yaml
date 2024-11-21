@@ -49,7 +49,7 @@ eta_min_ratio: 1e-2
 
 monitor: val_MulticlassF1Score
 tracking_direction: max
-patience: 2
+patience: 5
 min_delta: 0
 
 devices: ${oc.decode:${oc.env:DEVICES}}
@@ -60,7 +60,7 @@ precision: 32
 accumulate_grad_batches: 1
 gradient_clip_val: 1
 gradient_clip_algorithm: norm
-epoch: 20
+epoch: 50
 
 model_name: HuggingFace_${model_type}
 dataset_name: BurnSkinImages
