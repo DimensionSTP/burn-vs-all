@@ -1,6 +1,8 @@
 *.ckpt
 *.env
 *.out
+*.err
+*.error
 *.model
 *.csv
 *.mp4
