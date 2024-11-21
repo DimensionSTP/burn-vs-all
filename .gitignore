@@ -15,6 +15,7 @@
 *.ipynb
 *.tar
 *.tar.gz
+*.zip
 *.log
 *.png
 *.jpg
