@@ -1,0 +1,26 @@
+defaults:
+  - hydra: hydra
+
+run_name: hierarchical_inference
+work_dir: ${hydra:runtime.cwd}
+
+package_name: burn-vs-all
+connected_dir: ${oc.env:CONNECTED_DIR}/${package_name}
+
+num_labels: 4
+
+submission_path: 
+submission_names:
+  - classification_type=0-soft_voting
+  - classification_type=1-soft_voting
+  - classification_type=2-soft_voting
+  - classification_type=3-soft_voting
+
+target_column_name: label
+priority_order:
+  - 0
+  - 3
+  - 1
+  - 2
+
+save_name: hierarchical_inference
