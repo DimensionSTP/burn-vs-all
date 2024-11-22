@@ -56,7 +56,7 @@ def hierarchical_inference(
 
     for priority in priority_order:
         df.loc[
-            df[target_column_name].isnull() & (df.iloc[:, priority] == 1),
+            df[target_column_name].isnull() & (df.iloc[:, priority].squeeze() == 1),
             target_column_name,
         ] = priority
 
