@@ -15,6 +15,7 @@ submission_names:
   - classification_type=1-soft_voting
   - classification_type=2-soft_voting
   - classification_type=3-soft_voting
+  - classification_type=4-soft_voting
 
 target_column_name: label
 priority_order:
