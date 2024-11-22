@@ -28,7 +28,7 @@ def hierarchical_inference(
 
     target_column_name = config.target_column_name
     priority_order = config.priority_order
-    if len(priority_order) != len(config.num_labels):
+    if len(priority_order) != config.num_labels:
         raise ValueError(
             f"Lengths of the priority order and number of labels should be the same. priority_order: {priority_order}, num_labels: {config.num_labels}"
         )
