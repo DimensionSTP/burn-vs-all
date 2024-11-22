@@ -25,6 +25,10 @@ def hierarchical_inference(
 ) -> None:
     submission_path = config.submission_path
     submission_names = config.submission_names
+    if len(submission_names) - 1 != config.num_labels:
+        raise ValueError(
+            f"Count of the submission files - 1 and number of labels must be the same. priority_order: {submission_names}, num_labels: {config.num_labels}"
+        )
 
     target_column_name = config.target_column_name
     priority_order = config.priority_order
