@@ -23,18 +23,20 @@ from omegaconf import DictConfig
 def hierarchical_inference(
     config: DictConfig,
 ) -> None:
+    num_labels = config.num_labels
+
     submission_path = config.submission_path
     submission_names = config.submission_names
-    if len(submission_names) - 1 != config.num_labels:
+    if len(submission_names) - 1 != num_labels:
         raise ValueError(
-            f"Count of the submission files - 1 and number of labels must be the same. priority_order: {submission_names}, num_labels: {config.num_labels}"
+            f"Count of the submission files - 1 and number of labels must be the same. priority_order: {submission_names}, num_labels: {num_labels}"
         )
 
     target_column_name = config.target_column_name
     priority_order = config.priority_order
-    if len(priority_order) != config.num_labels:
+    if len(priority_order) != num_labels:
         raise ValueError(
-            f"Lengths of the priority order and number of labels must be the same. priority_order: {priority_order}, num_labels: {config.num_labels}"
+            f"Lengths of the priority order and number of labels must be the same. priority_order: {priority_order}, num_labels: {num_labels}"
         )
 
     save_name = config.save_name
