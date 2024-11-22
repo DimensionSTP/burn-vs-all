@@ -9,7 +9,7 @@ connected_dir: ${oc.env:CONNECTED_DIR}/${package_name}
 
 num_labels: 4
 
-submission_path: 
+submission_path: ${connected_dir}/submissions
 submission_names:
   - classification_type=0-soft_voting
   - classification_type=1-soft_voting
