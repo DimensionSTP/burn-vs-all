@@ -45,6 +45,7 @@ def hierarchical_inference(
         submission_dfs.append(submission_df)
 
     for i, submission_df in enumerate(submission_dfs):
+        submission_df = submission_df[[target_column_name]].astype(int)
         submission_df.columns = [i]
 
     df = pd.concat(
