@@ -62,7 +62,7 @@ def hierarchical_inference(
             target_column_name,
         ] = priority
 
-    df.loc[df[target_column_name].isnull(), target_column_name] = df.iloc[:, -1]
+    df.loc[df[target_column_name].isnull(), target_column_name] = df.iloc[:, num_labels]
     df[target_column_name] = df[target_column_name].astype(int)
 
     df.to_csv(
