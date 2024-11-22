@@ -9,7 +9,7 @@ connected_dir: ${oc.env:CONNECTED_DIR}/${package_name}
 voted_name: soft_voting
 
 voted_logit: ${connected_dir}/logits/${voted_name}.npy
-submission_file: ${connected_dir}/data/test.csv
+submission_file: ${connected_dir}/metadata/test.csv
 target_column_name: label
 voted_file: ${connected_dir}/submissions/${voted_name}.csv
 
