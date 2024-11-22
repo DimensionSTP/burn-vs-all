@@ -44,10 +44,10 @@ def hierarchical_inference(
     submission_dfs = []
     for submission_name in submission_names:
         submission_df = pd.read_csv(f"{submission_path}/{submission_name}.csv")
+        submission_df = submission_df[[target_column_name]].astype(int)
         submission_dfs.append(submission_df)
 
     for i, submission_df in enumerate(submission_dfs):
-        submission_df = submission_df[[target_column_name]].astype(int)
         submission_df.columns = [i]
 
     df = pd.concat(
