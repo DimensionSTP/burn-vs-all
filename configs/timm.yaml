@@ -62,7 +62,7 @@ gradient_clip_val: 1
 gradient_clip_algorithm: norm
 epoch: 50
 
-model_name: Timm_${model_type}
+model_name: Timm
 dataset_name: BurnSkinImages
 mode: train
 

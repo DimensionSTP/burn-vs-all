@@ -62,7 +62,7 @@ gradient_clip_val: 1
 gradient_clip_algorithm: norm
 epoch: 50
 
-model_name: HuggingFace_${model_type}
+model_name: HuggingFace
 dataset_name: BurnSkinImages
 mode: train
 
