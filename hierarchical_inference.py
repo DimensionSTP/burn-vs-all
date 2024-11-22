@@ -34,7 +34,7 @@ def hierarchical_inference(
     priority_order = config.priority_order
     if len(priority_order) != config.num_labels:
         raise ValueError(
-            f"Lengths of the priority order and number of labels should be the same. priority_order: {priority_order}, num_labels: {config.num_labels}"
+            f"Lengths of the priority order and number of labels must be the same. priority_order: {priority_order}, num_labels: {config.num_labels}"
         )
 
     save_name = config.save_name
