@@ -17,6 +17,8 @@
 *.tar.gz
 *.zip
 *.log
+*.bin
+*.safetensors
 *.png
 *.jpg
 *.JPG
